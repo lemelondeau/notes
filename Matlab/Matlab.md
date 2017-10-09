@@ -42,7 +42,19 @@ ans =
 
 ```
 
-3\. C `= setxor(A,B)` 
+3\. C = setxor(A,B)
 
 returns the data of `A` and `B` that are not in their intersection (the symmetric difference), with no repetitions. That is, `setxor` returns the data that occurs in `A` or `B`, but not both. `C` is in sorted order.
 
+4\. Add path:
+```matlab
+addpath('mypath');
+%add all subfolders
+addpath(genpath('mypath'));
+```
+
+5\. Pairwise distance between two sets of observations
+```matlab
+%row by row distance
+D=pdist(X,Y)
+```
