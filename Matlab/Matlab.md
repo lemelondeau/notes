@@ -58,3 +58,15 @@ addpath(genpath('mypath'));
 %row by row distance
 D=pdist(X,Y)
 ```
+
+6\. Generate random numbers that are repeatable
+```matlab
+%initialize
+rng('default');
+%seed of 1
+rng(1);
+%save the generator settings
+s=rng;
+%recover
+rng(s);
+```
