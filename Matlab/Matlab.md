@@ -70,3 +70,31 @@ s=rng;
 %recover
 rng(s);
 ```
+
+7. Find given row in a matrix
+
+```matlab
+% find all, also faster
+index = find(all(bsxfun(@eq, M, X), 2));
+
+% find the first row
+ismember(X, M, 'rows')
+```
+
+8. return statistics
+
+``` matlab
+%return chi-square, contengency table, p-value
+crosstab(X, Y);
+```
+
+9. Count elements in an array
+```matlab
+numbers=unique(v);       %list of elements
+count=hist(v,numbers);   %provides a count of each element's occurrence
+```
+```matlab
+% another way
+length(find(v==num));
+```
+
