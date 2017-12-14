@@ -98,3 +98,13 @@ count=hist(v,numbers);   %provides a count of each element's occurrence
 length(find(v==num));
 ```
 
+10. Read data from csv
+
+    ```matlab
+    % read all, the file must contain only numeric values
+    M = csvread(filename)
+    % read data from the file starting at row offset R1 and column offset C1
+    M = csvread(filename, R1,C1)
+    ```
+
+    ​
