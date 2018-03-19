@@ -100,11 +100,75 @@ length(find(v==num));
 
 10. Read data from csv
 
+  ```matlab
+  % read all, the file must contain only numeric values
+  M = csvread(filename)
+  % read data from the file starting at row offset R1 and column offset C1
+  M = csvread(filename, R1,C1)
+  ```
+
+11. Concatenate string
+```matlab
+s = strcat(s1,...,sN)
+```
+
+12. try...catch
+```matlab
+try
+
+catch ME
+    disp(ME.identifier);
+    disp(ME.message);
+    disp('Something is wrong.');
+end
+```
+
+13. read string from csv file
+
+    ``` matlab
+    kernel_string = readtable('unique_kernelstring_.csv');
+    ```
+
+14. generate random numbers, non-repeat
+
     ```matlab
-    % read all, the file must contain only numeric values
-    M = csvread(filename)
-    % read data from the file starting at row offset R1 and column offset C1
-    M = csvread(filename, R1,C1)
+    randperm(n, k)
+    ```
+
+15. run  on server
+
+    ```bash
+    nohup matlab -nodisplay -nodesktop -nojvm -nosplash < YourCode.m & 
+    ```
+
+    ```bash
+    nohup matlab -nojvm -nodisplay -nosplash -nodesktop < matlabscript.m 1>running.log 2>running.err &
+    ```
+
+    he -nodesktop starts MATLAB without bringing up the MATLAB desktop. **The JVM software is started**. Use the current window in the operating system to enter commands. * Will still work with graphics (you can use the plot commands)*
+
+    -nodisplay: also starts the JVM and does not start the desktop in addition it also ignores Commands and the DISPLAY environment variable in LINUX. (will not work with graphics because of X limitations I presume)
+
+    -nojvm does not start the JVM software and uses current window. Graphics will not work without the JVM
+
+16. iterate struct
+
+    ```matlab
+    teststruct = struct('a',3,'b',5,'c',9)
+    fields = fieldnames(teststruct)
+    for fn=fields'
+      fn
+      %# since fn is a 1-by-1 cell array, you still need to index into it, unfortunately
+      teststruct.(fn{1})
+    end
+    ```
+
+17. shut down parallel pool
+
+    ```matlab
+    poolobj = gcp('nocreate');
+    delete(poolobj);
     ```
 
     ​
+
