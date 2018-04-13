@@ -135,21 +135,7 @@ end
     randperm(n, k)
     ```
 
-15. run  on server
-
-    ```bash
-    nohup matlab -nodisplay -nodesktop -nojvm -nosplash < YourCode.m & 
-    ```
-
-    ```bash
-    nohup matlab -nojvm -nodisplay -nosplash -nodesktop < matlabscript.m 1>running.log 2>running.err &
-    ```
-
-    he -nodesktop starts MATLAB without bringing up the MATLAB desktop. **The JVM software is started**. Use the current window in the operating system to enter commands. * Will still work with graphics (you can use the plot commands)*
-
-    -nodisplay: also starts the JVM and does not start the desktop in addition it also ignores Commands and the DISPLAY environment variable in LINUX. (will not work with graphics because of X limitations I presume)
-
-    -nojvm does not start the JVM software and uses current window. Graphics will not work without the JVM
+15. ​
 
 16. iterate struct
 
@@ -170,5 +156,68 @@ end
     delete(poolobj);
     ```
 
-    ​
+18. length of each string in a cell array
 
+    ```matlab
+    cellfun(@length,A)
+    ```
+
+19. save all the variable if there is an error
+
+    ```matlab
+    dbstop if error
+    ```
+
+20. set number between 1 and 3 to zero
+
+    ```matlab
+    array(and(array>1,array<3))=0
+    ```
+
+
+21. Plot
+
+    另一个重要的技巧是delete/clf-plot-pause
+    用plot可以画图（注意记录句柄），然后用delete删掉特定图象，或用clf清图，再绘制，这可以在figure窗口产生动画。但是如果只plot，往往只会在全部程序执行结束时显示，这时候需要用pause让figure完成图像的更新。drawnow貌似也可以，但是我比较喜欢用pause，能够简单地控制动画的速度。
+    这会方便调试和展示。这个技巧尤其适合使用matlab的图形用户界面设计功能时构造一个显示运行状态等信息的figure。
+
+22. ```matlab 
+          
+    ```
+
+23. Matlab plot
+
+    ```matlab
+    %set ticks
+    x=[0 5 10];
+    labels={'x = 0','x = 5','x = 10'}
+    set(gca,'xTick',x,'xTickLabel',labels)
+    %set font size
+    xt = get(gca, 'XTick');
+    set(gca, 'FontSize', 16)
+    xlabel('percentage','FontSize',18)
+    %set position
+    set(gcf, 'Position', [0, 0, 800, 600])
+    set(gcf, 'Units', 'Normalized', 'OuterPosition', [0 0 0.5 0.5]);
+    %use one title even with subplots
+    h=figure;
+    h.NextPlot = 'add';
+    a = axes; 
+    	%// Set the title and get the handle to it
+    ht = title('Test');
+    	%// Turn the visibility of the axes off
+    a.Visible = 'off';
+    	%// Turn the visibility of the title on
+    ht.Visible = 'on';
+    % linewidth
+    plot(x, 'MarkerSize',3,'LineWidth',2);
+    % 用右边的y轴展示
+    yyaxis right 
+    % get color
+    p=plot(X,y);
+    c=p.Color;
+
+    %
+    ```
+
+    ​
